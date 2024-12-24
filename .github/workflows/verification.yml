@@ -1,6 +1,15 @@
 name: "Compatibility verification"
 
-on: [ push, pull_request ]
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test:
@@ -21,6 +30,10 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           gradle-version: 8.7
+
+      - name: Give permission to gradlew
+        run: chmod +x gradlew
+        if: runner.os != 'Windows'
 
       # Run compatibility verification
       - name: Compatibility verification

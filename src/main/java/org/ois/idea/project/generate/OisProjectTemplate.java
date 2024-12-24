@@ -47,7 +47,7 @@ public interface OisProjectTemplate {
         }
     }
 
-    private String readResource(InputStream resourceStream) throws IOException {
+    default String readResource(InputStream resourceStream) throws IOException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(resourceStream))) {
             // Read the resource content
             StringBuilder contentBuilder = new StringBuilder();
@@ -55,7 +55,6 @@ public interface OisProjectTemplate {
             while ((line = reader.readLine()) != null) {
                 contentBuilder.append(line).append(System.lineSeparator());
             }
-
             // Replace placeholders in the content
             return contentBuilder.toString();
         }

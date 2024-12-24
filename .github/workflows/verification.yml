@@ -13,7 +13,12 @@ concurrency:
 
 jobs:
   test:
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        core-branch: [main]  # Adjust branches/tags as needed
+        gradle-plugin-branch: [main]
     name: Compatibility verification
     steps:
       - uses: actions/checkout@v4
@@ -34,6 +39,24 @@ jobs:
       - name: Give permission to gradlew
         run: chmod +x gradlew
         if: runner.os != 'Windows'
+
+      - name: SetUp ois-core
+        run: |
+          git clone --branch ${{ matrix.core-branch }} https://github.com/attiasas/ois-core.git
+          cd ois-core
+          chmod +x gradlew
+          ./gradlew publishToMavenLocal
+          cd ..  # Return to the main project working directory
+        shell: bash
+
+      - name: SetUp ois-gradle-plugin
+        run: |
+          git clone --branch ${{ matrix.gradle-plugin-branch }} https://github.com/attiasas/ois-gradle-plugin.git
+          cd ois-core
+          chmod +x gradlew
+          ./gradlew publishToMavenLocal
+          cd ..  # Return to the main project working directory
+        shell: bash
 
       # Run compatibility verification
       - name: Compatibility verification

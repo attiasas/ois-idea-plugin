@@ -28,6 +28,24 @@ jobs:
         run: chmod +x gradlew
         if: runner.os != 'Windows'
 
+      - name: SetUp ois-core
+        run: |
+          git clone --branch ${{ matrix.core-branch }} https://github.com/attiasas/ois-core.git
+          cd ois-core
+          chmod +x gradlew
+          ./gradlew publishToMavenLocal
+          cd ..  # Return to the main project working directory
+        shell: bash
+
+      - name: SetUp ois-gradle-plugin
+        run: |
+          git clone --branch ${{ matrix.gradle-plugin-branch }} https://github.com/attiasas/ois-gradle-plugin.git
+          cd ois-core
+          chmod +x gradlew
+          ./gradlew publishToMavenLocal
+          cd ..  # Return to the main project working directory
+        shell: bash
+
       # Extract version from the release tag
       - name: Extract Version
         id: extract_version

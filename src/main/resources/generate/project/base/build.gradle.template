@@ -1,0 +1,27 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
+plugins {
+    id 'java'
+    id 'org.ois.simulation' version '%PLUGIN_VERSION%'
+}
+
+group = '%PROJECT_GROUP%'
+version = '0.0.1'
+ext {
+    versionCode = 1
+}
+
+// This must be at least 11, and no higher than the JDK version this project is built with.
+java.targetCompatibility = "11"
+// This should probably be equal to targetCompatibility, above. This only affects the TeaVM module.
+java.sourceCompatibility = "11"
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}

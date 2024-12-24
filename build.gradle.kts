@@ -17,11 +17,15 @@ intellij {
     version.set("2023.2.6")
     type.set("IC") // Target IDE Platform
 
-    plugins.set(listOf("gradle","java"))
+    plugins.set(listOf("gradle","java", "org.jetbrains.plugins.gradle"))
 }
 
 dependencies {
     implementation("org.ois", "open-interactive-simulation-core", findProperty("coreVersion").toString())
+
+    implementation ("net.lingala.zip4j","zip4j","2.11.4")
+
+    compileOnly("org.projectlombok","lombok","1.18.20")
 }
 
 tasks {

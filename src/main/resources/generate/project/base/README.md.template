@@ -1,0 +1,146 @@
+<div align="center">
+
+# %PROJECT_NAME%
+
+</div>
+
+## Table of Contents
+- [📚 Overview](#-overview)
+- [🐞 Troubleshooting](#-troubleshooting)
+
+---
+## 📚 Overview
+#### For more information and full documentation visit [OIS wiki page](https://github.com/attiasas/ois-core/wiki).
+You can edit your simulation manifest: [here](./simulation/simulation.ois)
+
+You can develop and run your simulation using the OIS IDEA plugin or manually by running the gradle tasks:
+
+### 💻 Running the simulation on Desktop
+
+<details>
+<summary>Desktop</summary>
+
+**Run the following command:**
+
+<details open>
+<summary>Windows</summary>
+
+```bash
+./gradlew.bat runDesktop
+ ```
+
+</details>
+<details>
+<summary>Mac / Linux</summary>
+
+```bash
+./gradlew runDesktop
+```
+
+</details>
+
+</details>
+
+### 🌐 Running the simulation on Html web browser
+
+<details>
+<summary>Html</summary>
+
+> After running the command below the simulation will be served at [localhost](http://localhost:8080/)
+
+**Run the following command:**
+
+<details open>
+<summary>Windows</summary>
+
+```bash
+./gradlew.bat runHtml
+ ```
+
+</details>
+<details>
+<summary>Mac / Linux</summary>
+
+```bash
+./gradlew runHtml
+```
+
+</details>
+
+</details>
+
+### 📱 Running the simulation on Android device
+
+<details>
+<summary>Android</summary>
+
+> Connect an Android device (dev mode enabled) or open a virtual device in IDEA.
+
+**Run the following command:**
+
+<details open>
+<summary>Windows</summary>
+
+```bash
+./gradlew.bat runAndroid
+ ```
+
+</details>
+<details>
+<summary>Mac / Linux</summary>
+
+```bash
+./gradlew runAndroid
+```
+
+</details>
+
+</details>
+
+---
+## 🐞 Troubleshooting
+
+### Validate your project configurations
+<details>
+
+**Run the following task:**
+
+windows
+```bash
+./gradlew.bat validateProject
+ ```
+
+Mac / Linux
+```bash
+./gradlew validateProject
+```
+
+</details>
+
+### Try clearing the OIS runner caches
+<details>
+
+**Run the following task:**
+
+windows
+```bash
+./gradlew.bat cleanSimulationEnv
+ ```
+
+Mac / Linux
+```bash
+./gradlew cleanSimulationEnv
+```
+
+</details>
+
+### You have the option of changing the log level
+
+1. Go to: [build.gradle](./build.gradle) file
+
+2. Add `simulation` closure with the desired log level (`DEBUG` / `INFO` / `WARN` / `ERR`)
+```groovy
+simulation {
+   logLevel = "DEBUG"
+}
+```

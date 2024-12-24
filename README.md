@@ -2,8 +2,6 @@
 
 # Open Interactive Simulation IDEA Plugin
 
-[![Test](https://github.com/attiasas/ois-idea-plugin/actions/workflows/test.yml/badge.svg)](https://github.com/attiasas/ois-idea-plugin/actions/workflows/test.yml?branch=main)
-
 </div>
 
 ## Table of Contents

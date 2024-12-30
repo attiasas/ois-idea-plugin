@@ -1,12 +1,10 @@
 package org.ois.idea.ui.views;
 
 import com.intellij.openapi.Disposable;
-import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.SimpleToolWindowPanel;
 import com.intellij.util.messages.MessageBusConnection;
 import org.jetbrains.annotations.NotNull;
-import org.ois.idea.project.OisProject;
 
 public class OisToolView extends SimpleToolWindowPanel implements Disposable {
     protected final MessageBusConnection projectBusConnection;

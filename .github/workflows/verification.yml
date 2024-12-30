@@ -38,7 +38,6 @@ jobs:
 
       - name: Give permission to gradlew
         run: chmod +x gradlew
-        if: runner.os != 'Windows'
 
       - name: SetUp ois-core
         run: |

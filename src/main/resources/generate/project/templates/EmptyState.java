@@ -31,9 +31,14 @@ public class EmptyState implements IState {
 
     }
 
-    /** Called to resize the state (typically in response to window resizing) */
+    /**
+    * Called to resize the state, typically in response to window resizing.
+    *
+    * @param width  The new width of the state.
+    * @param height The new height of the state.
+    */
     @Override
-    public void resize(int i, int i1) {
+    public void resize(int width, int height) {
 
     }
 
@@ -43,9 +48,14 @@ public class EmptyState implements IState {
 
     }
 
-    /** Called every frame to update the state. if the state should continue 'true' should be returned */
+    /**
+    * Called to update the state.
+    *
+    * @param dt The delta time since the last update.
+    * @return True if the state should continue, false otherwise (will cause the state to exit).
+    */
     @Override
-    public boolean update(float v) {
+    public boolean update(float dt) {
         return true;
     }
 

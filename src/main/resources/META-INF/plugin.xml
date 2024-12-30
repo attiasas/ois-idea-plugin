@@ -23,7 +23,6 @@
         <!-- Log -->
         <applicationService serviceImplementation="org.ois.idea.log.Logger"/>
         <notificationGroup id="OIS Errors" displayType="BALLOON" isLogByDefault="false"/>
-<!--        <notificationGroup id="OIS Notifications" displayType="TOOL_WINDOW" isLogByDefault="false"/>-->
         <notificationGroup id="OIS Log" displayType="NONE" isLogByDefault="true"/>
 
         <!-- Logic -->
@@ -37,11 +36,6 @@
         <projectService serviceImplementation="org.ois.idea.ui.OisToolWindow"/>
         <projectService serviceImplementation="org.ois.idea.ui.views.project.CreateProjectView"/>
         <projectService serviceImplementation="org.ois.idea.ui.views.project.ProjectConfigView"/>
-
-
-<!--        <projectService serviceImplementation="org.ois.idea.ui.project.OisInitProjectWindow"/>-->
-<!--        <projectService serviceImplementation="org.ois.idea.ui.project.OisProjectConfigWindow"/>-->
-
 
     </extensions>
 
@@ -63,16 +57,6 @@
                 text="Stop Debug Simulation"
                 description="Stop running the active simulation"
                 icon="AllIcons.Actions.Suspend"/>
-        <action id="OIS.DebugAndroidSimulation"
-                class="org.ois.idea.actions.DebugAndroidSimulationAction"
-                text="Debug Android Simulation"
-                description="Run the simulation on android platform in dev mode"
-                icon="com.intellij.icons.ExpUiIcons.Actions.Install"/>
-        <action id="OIS.DebugHtmlSimulation"
-                class="org.ois.idea.actions.DebugHtmlSimulationAction"
-                text="Debug Html Simulation"
-                description="Run the simulation on html platform in dev mode"
-                icon="com.intellij.icons.ExpUiIcons.FileTypes.Html"/>
         <action id="OIS.ExportSimulation"
                 class="org.ois.idea.actions.ExportSimulationAction"
                 text="Export Simulation"

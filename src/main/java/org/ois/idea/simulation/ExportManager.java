@@ -2,22 +2,17 @@ package org.ois.idea.simulation;
 
 import com.intellij.openapi.project.Project;
 import org.jetbrains.annotations.NotNull;
-import org.ois.core.utils.Version;
 import org.ois.idea.events.ProjectStateEvents;
 import org.ois.idea.log.Logger;
 import org.ois.idea.project.OisProject;
 import org.ois.idea.project.OisProjectManager;
 import org.ois.idea.utils.ProjectUtils;
 import org.ois.idea.utils.Utils;
-import org.ois.idea.utils.command.CommandExecutor;
-import org.ois.idea.utils.command.CommandResults;
 
 import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ExportManager {

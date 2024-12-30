@@ -22,7 +22,6 @@ import java.util.Map;
 public class Utils {
 
     public static final String PRODUCT_ID = "ois-idea-plugin";
-    public static final String PLUGIN_ID = "ois.idea.plugin";
     public static final Path USER_HOME_PATH = Paths.get(System.getProperty("user.home"));
     public static final Path HOME_PATH = USER_HOME_PATH.resolve("." + PRODUCT_ID);
 

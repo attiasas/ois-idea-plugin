@@ -3,11 +3,9 @@ package org.ois.idea.project;
 import com.intellij.openapi.project.Project;
 import org.jetbrains.annotations.NotNull;
 import org.ois.core.utils.Version;
-import org.ois.idea.actions.ViewSelectorAction;
 import org.ois.idea.events.ProjectStateEvents;
 import org.ois.idea.log.Logger;
 import org.ois.idea.ui.OisToolWindow;
-import org.ois.idea.utils.Utils;
 
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;

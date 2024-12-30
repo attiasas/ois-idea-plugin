@@ -6,20 +6,8 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.project.Project;
 import org.jetbrains.annotations.NotNull;
 import org.ois.core.runner.RunnerConfiguration;
-import org.ois.idea.log.NotifyUser;
 import org.ois.idea.simulation.SimulationManager;
 
-/**
- * Also add
- * <group id="JFrog.Floating">
- *             <action id="JFrog.FloatingStartLocalScan"
- *                     class="com.jfrog.ide.idea.actions.StartLocalScanAction"
- *                     text="Trigger Scan"
- *                     description="Trigger JFrog scan"
- *                     icon="/icons/jfrog_icon.svg"/>
- *         </group>
- *
- */
 public class DebugSimulationAction extends AnAction {
 
     @Override

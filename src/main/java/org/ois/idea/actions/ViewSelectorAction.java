@@ -61,9 +61,6 @@ public class ViewSelectorAction extends AnAction implements CustomComponentActio
         // Create a panel to hold the ComboBox
         JPanel panel = new JPanel(new BorderLayout());
 
-        // Create ComboBox with the available states
-
-
         // Add the ComboBox to the panel
         panel.add(comboBox, BorderLayout.CENTER);
 

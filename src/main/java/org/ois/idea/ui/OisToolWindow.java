@@ -10,7 +10,6 @@ import com.intellij.util.messages.MessageBusConnection;
 import org.jetbrains.annotations.NotNull;
 import org.ois.idea.actions.ViewSelectorAction;
 import org.ois.idea.events.ProjectViewEvents;
-import org.ois.idea.log.Logger;
 import org.ois.idea.project.OisProject;
 import org.ois.idea.ui.views.project.CreateProjectView;
 import org.ois.idea.ui.views.project.ProjectConfigView;
@@ -50,7 +49,6 @@ public class OisToolWindow extends SimpleToolWindowPanel implements Disposable {
 
     private final MessageBusConnection projectBusConnection;
     private final MessageBusConnection appBusConnection;
-    private final Project ideaProject;
 
     private final Map<View, JPanel> views;
     private View currentView = View.Project;
@@ -60,8 +58,7 @@ public class OisToolWindow extends SimpleToolWindowPanel implements Disposable {
         super(false);
         this.projectBusConnection = project.getMessageBus().connect(this);
         this.appBusConnection = ApplicationManager.getApplication().getMessageBus().connect(this);
-        this.ideaProject = project;
-        this.viewSelectorAction = new ViewSelectorAction(ideaProject);
+        this.viewSelectorAction = new ViewSelectorAction(project);
 
         views = Map.of(
                 View.Create, CreateProjectView.getInstance(project),
@@ -78,8 +75,6 @@ public class OisToolWindow extends SimpleToolWindowPanel implements Disposable {
 
         // Create a centered JLabel
         JLabel projectLabel = new JLabel(type.name() + " View, Coming Soon!", SwingConstants.CENTER);
-//        projectLabel.setHorizontalAlignment(SwingConstants.CENTER); // Center horizontally
-//        projectLabel.setVerticalAlignment(SwingConstants.CENTER);   // Center vertically
 
         // Add the label to the CENTER of the panel
         contentPanel.add(projectLabel, BorderLayout.CENTER);
@@ -123,16 +118,7 @@ public class OisToolWindow extends SimpleToolWindowPanel implements Disposable {
     private ActionGroup getGearActions(ActionManager actionManager) {
         DefaultActionGroup toolbarGroup = new DefaultActionGroup();
 
-//        DefaultActionGroup subGroup = new DefaultActionGroup();
-//        subGroup.add(actionManager.getAction("OIS.DownloadInstallDependencies"));
-//        subGroup.add(actionManager.getAction("OIS.CreateProject"));
-
-        toolbarGroup.addAll(
-                actionManager.getAction("OIS.DebugSimulation"),
-                actionManager.getAction("OIS.DebugHtmlSimulation"),
-                actionManager.getAction("OIS.DebugAndroidSimulation")//,
-//                subGroup
-        );
+        toolbarGroup.addAll(actionManager.getAction("OIS.DebugSimulation"));
 
         return toolbarGroup;
     }

@@ -1,8 +1,6 @@
 package org.ois.idea.ui.views.project;
 
-import com.intellij.openapi.actionSystem.Separator;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.ui.Splitter;
 import com.intellij.ui.SeparatorComponent;
 import com.intellij.ui.components.JBScrollPane;
 import com.intellij.util.ui.JBUI;
@@ -26,10 +24,6 @@ public class ProjectConfigView extends TitledView {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS)); // Vertical stacking
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add padding
-
-
-//        JPanel content = new JPanel(new BorderLayout());
-
 
         JPanel versionsPanel = new JPanel(new GridBagLayout());
         GridBagConstraints rdGbc = new GridBagConstraints();
@@ -55,16 +49,6 @@ public class ProjectConfigView extends TitledView {
         SimulationManifestDisplay manifestDisplay = new SimulationManifestDisplay(OisProjectManager.getInstance(getIdeaProject()).getProject().getManifest(), false);
         manifestDisplay.setBorder(BorderFactory.createEmptyBorder(10, 5, 5, 5)); // Top, Left, Bottom, Right
         mainPanel.add(manifestDisplay);
-
-        // Add glue to consume remaining vertical space
-//        mainPanel.add(Box.createVerticalGlue());
-
-        // Wrap the main panel in a JBScrollPane to make it scrollable
-
-
-        // Set the scrollable panel as content, add it to the center of the wrapperPanel
-//        JPanel wrapperPanel = new JPanel(new BorderLayout());
-//        wrapperPanel.add(mainPanel);  // Corrected: Use BorderLayout.CENTER
 
         // Set wrapperPanel as the content
         setContent(new JBScrollPane(mainPanel, JBScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JBScrollPane.HORIZONTAL_SCROLLBAR_NEVER));

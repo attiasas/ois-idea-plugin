@@ -1,8 +1,6 @@
 package org.ois.idea.ui.views.project.components;
 
-import com.intellij.util.ui.JBUI;
 import org.ois.idea.ui.common.TitledAttributesContainer;
-import org.ois.idea.utils.IconUtils;
 import org.ois.idea.utils.Utils;
 
 import javax.swing.*;

@@ -9,7 +9,7 @@ import java.awt.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class SimulationStatesDetails extends TitledAttributesContainer {
+public class  SimulationStatesDetails extends TitledAttributesContainer {
     private final JTextField initialStateField;
 
     public SimulationStatesDetails(SimulationManifest manifest) {

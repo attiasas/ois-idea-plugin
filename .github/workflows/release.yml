@@ -7,6 +7,11 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        core-branch: [ main ]  # Adjust branches/tags as needed
+        gradle-plugin-branch: [ main ]
 
     steps:
       # Checkout the repository
@@ -54,8 +59,9 @@ jobs:
           # Remove leading "v" if present (e.g., "v1.2.3" -> "1.2.3")
           VERSION=${VERSION#v}
           
-          # Update gradle.properties with the new version
+          # Update gradle.properties and action env with the new version
           sed -i "s/^version=.*/version=${VERSION}/" gradle.properties
+          echo "VERSION=${VERSION}" >> $GITHUB_ENV
           
           # Verify the change
           echo "Updated version in gradle.properties:"

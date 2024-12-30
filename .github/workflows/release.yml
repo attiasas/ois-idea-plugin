@@ -4,6 +4,9 @@ on:
   release:
     types: [published]
 
+permissions:
+  contents: write
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -79,3 +82,5 @@ jobs:
           asset_path: build/distributions/ois-idea-plugin-${{ env.VERSION }}.zip
           asset_name: ois-idea-plugin-${{ env.VERSION }}.zip
           asset_content_type: application/zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

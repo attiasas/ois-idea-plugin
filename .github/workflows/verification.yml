@@ -1,11 +1,6 @@
 name: "Compatibility verification"
 
-on:
-  push:
-    branches:
-      - '**'
-    tags-ignore:
-      - '**'
+on: [ push, pull_request ]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}-${{ github.ref }}

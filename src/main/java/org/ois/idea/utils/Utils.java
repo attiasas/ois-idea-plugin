@@ -14,6 +14,7 @@ import org.ois.idea.project.generate.OisProjectGenerator;
 
 import javax.swing.*;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -34,7 +35,7 @@ public class Utils {
         }
         // Read the template content into a string
         String templateContent;
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(resourceStream))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(resourceStream, StandardCharsets.UTF_8))) {
             StringBuilder contentBuilder = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {

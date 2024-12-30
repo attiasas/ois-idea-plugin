@@ -58,7 +58,6 @@ public class ExportManager {
                     // Done
                     indicator.done();
                     Logger.getInstance().info("OIS project exported");
-                    // NotifyUser.showMsgDialog("Exported!");
                     askToOpenDistributionDirectory(projectDirectory.resolve("build").resolve("ois").resolve("distribution"));
                 } catch (Exception e) {
                     Logger.getInstance().error(LOG_PREFIX + "export failed", e);

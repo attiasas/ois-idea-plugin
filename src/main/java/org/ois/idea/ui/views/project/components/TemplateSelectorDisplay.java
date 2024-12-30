@@ -4,7 +4,6 @@ import com.intellij.ui.JBColor;
 import com.intellij.ui.components.JBList;
 import com.intellij.ui.components.JBScrollPane;
 import org.ois.idea.project.generate.OisProjectTemplate;
-import org.ois.idea.project.generate.templates.BasicTemplate;
 import org.ois.idea.project.generate.templates.EmptyTemplate;
 import org.ois.idea.ui.common.TitledContentContainer;
 
@@ -23,7 +22,6 @@ public class TemplateSelectorDisplay extends TitledContentContainer {
 
         templates = new LinkedHashMap<>();
         templates.put("Empty",new EmptyTemplate());
-        templates.put("Basic",new BasicTemplate());
 
         // Create a JList with the items
         itemList = new JBList<>(List.copyOf(templates.keySet()));

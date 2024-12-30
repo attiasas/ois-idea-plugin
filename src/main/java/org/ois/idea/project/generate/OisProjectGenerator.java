@@ -88,12 +88,9 @@ public class OisProjectGenerator {
         generateTask.runInBackground();
     }
 
-    private void initGradleProjectInDirectory() throws IOException, InterruptedException {
+    private void initGradleProjectInDirectory() throws IOException {
         extractBaseProjectToDirectory(params.directory);
         generateBaseProjectFiles(params.directory, params.name, params.packageName);
-//        ProjectUtils.runGradleTasks(params.directory, new Hashtable<>(), true,
-//                "init", "--type", "basic", "--overwrite", "--dsl", "groovy", "--project-name", params.name
-//        );
     }
 
     private void extractBaseProjectToDirectory(Path directory) throws IOException {
@@ -185,7 +182,7 @@ public class OisProjectGenerator {
         Utils.generateFromTemplate(
                 "/generate/project/base/README.md.template",
                 outputDir.resolve("README.md"),
-                Map.of("PLUGIN_NAME", projectName)
+                Map.of("PROJECT_NAME", projectName)
         );
     }
 

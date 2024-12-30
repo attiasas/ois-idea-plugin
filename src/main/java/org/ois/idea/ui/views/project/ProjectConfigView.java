@@ -44,7 +44,7 @@ public class ProjectConfigView extends TitledView {
         coreVersion = new JLabel("Loading...");
         versionsPanel.add(coreVersion, rdGbc);
 
-        mainPanel.add(versionsPanel);//, BorderLayout.NORTH);
+        mainPanel.add(versionsPanel);
 
         SimulationManifestDisplay manifestDisplay = new SimulationManifestDisplay(OisProjectManager.getInstance(getIdeaProject()).getProject().getManifest(), false);
         manifestDisplay.setBorder(BorderFactory.createEmptyBorder(10, 5, 5, 5)); // Top, Left, Bottom, Right

@@ -49,8 +49,17 @@ jobs:
       - name: Extract Version
         id: extract_version
         run: |
+          # Extract the version from the GitHub release tag (e.g., v1.2.3)
           VERSION=${{ github.event.release.tag_name }}
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          # Remove leading "v" if present (e.g., "v1.2.3" -> "1.2.3")
+          VERSION=${VERSION#v}
+          
+          # Update gradle.properties with the new version
+          sed -i "s/^version=.*/version=${VERSION}/" gradle.properties
+          
+          # Verify the change
+          echo "Updated version in gradle.properties:"
+          grep '^version=' gradle.properties || echo "version property not found"
 
       # Build the project and create a ZIP
       - name: Build Project

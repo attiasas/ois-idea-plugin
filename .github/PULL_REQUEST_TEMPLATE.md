@@ -1,0 +1,3 @@
+- [ ] If this feature effect users, update the [documentation](https://github.com/attiasas/ois-idea-plugin/blob/main/README.md) and the [wiki](https://github.com/attiasas/ois-core/wiki)
+- [ ] This feature was validated on all supported platforms
+-----

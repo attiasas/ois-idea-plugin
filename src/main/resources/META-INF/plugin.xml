@@ -1,0 +1,72 @@
+<idea-plugin>
+    <id>org.ois.ois-idea-plugin</id>
+    <name>OIS</name>
+
+    <vendor email="support@ois.com" url="https://github.com/attiasas/ois-core/wiki">OIS</vendor>
+
+    <description><![CDATA[
+        <p>The plugin allows developers to develop simulations / games with integrated develop environment</p>
+  ]]></description>
+
+    <change-notes>
+        <![CDATA[
+          For the latest release notes, please visit our <a href="https://github.com/attiasas/ois-idea-plugin/releases">Release Notes</a> page.
+        ]]>
+    </change-notes>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.java</depends>
+    <depends>org.jetbrains.plugins.gradle</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+
+        <!-- Log -->
+        <applicationService serviceImplementation="org.ois.idea.log.Logger"/>
+        <notificationGroup id="OIS Errors" displayType="BALLOON" isLogByDefault="false"/>
+        <notificationGroup id="OIS Log" displayType="NONE" isLogByDefault="true"/>
+
+        <!-- Logic -->
+        <projectService serviceImplementation="org.ois.idea.project.OisProjectManager"/>
+        <projectService serviceImplementation="org.ois.idea.project.DependencyManager"/>
+        <projectService serviceImplementation="org.ois.idea.simulation.SimulationManager"/>
+        <projectService serviceImplementation="org.ois.idea.simulation.ExportManager"/>
+
+        <!-- UI -->
+        <toolWindow id="OIS" anchor="left" icon="AllIcons.Actions.Colors" factoryClass="org.ois.idea.ui.OisToolWindowFactory" canCloseContents="false"/>
+        <projectService serviceImplementation="org.ois.idea.ui.OisToolWindow"/>
+        <projectService serviceImplementation="org.ois.idea.ui.views.project.CreateProjectView"/>
+        <projectService serviceImplementation="org.ois.idea.ui.views.project.ProjectConfigView"/>
+
+    </extensions>
+
+    <actions>
+
+        <action id="OIS.DownloadInstallDependencies"
+                class="org.ois.idea.actions.RefreshDependenciesAction"
+                text="Install OIS Dependencies"
+                description="Download and install the needed OIS dependencies for the project"
+                icon="com.intellij.icons.ExpUiIcons.General.Download"/>
+
+        <action id="OIS.DebugSimulation"
+                class="org.ois.idea.actions.DebugSimulationAction"
+                text="Debug Simulation"
+                description="Run the simulation on desktop platform in dev mode"
+                icon="AllIcons.Actions.StartDebugger"/>
+        <action id="OIS.StopDebugSimulation"
+                class="org.ois.idea.actions.DebugStopSimulationAction"
+                text="Stop Debug Simulation"
+                description="Stop running the active simulation"
+                icon="AllIcons.Actions.Suspend"/>
+        <action id="OIS.ExportSimulation"
+                class="org.ois.idea.actions.ExportSimulationAction"
+                text="Export Simulation"
+                description="Export the simulation for distribution"
+                icon="com.intellij.icons.ExpUiIcons.Actions.Deploy"/>
+        <action id="OIS.CreateProject"
+                class="org.ois.idea.actions.CreateProjectAction"
+                text="Create New OIS Project"
+                description="Set the main view to create a new OIS project with specific configurations"
+                icon="com.intellij.icons.ExpUiIcons.General.Add"/>
+    </actions>
+
+</idea-plugin>

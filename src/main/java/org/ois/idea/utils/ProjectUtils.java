@@ -52,7 +52,7 @@ public class ProjectUtils {
             return;
         }
         RuntimeException exception = new RuntimeException(results.getStdErr());
-        Logger.getInstance().debug(String.format("Failed to %s", msg), exception);
+        Logger.getInstance().error(String.format("Failed to %s", msg), exception);
         throw exception;
     }
 
@@ -68,6 +68,7 @@ public class ProjectUtils {
                     executor.exeCommand(List.of(gradleTasks), workingDir.toFile()),
                     String.format("run gradle tasks: %s", String.join(",", gradleTasks))
             );
+            return;
         }
         for (String task : gradleTasks) {
             parseCommandResults(

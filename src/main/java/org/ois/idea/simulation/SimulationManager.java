@@ -18,6 +18,10 @@ import org.ois.idea.events.ProjectStateEvents;
 import org.ois.idea.log.Logger;
 import org.ois.idea.utils.ProjectUtils;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -45,6 +49,26 @@ public class SimulationManager {
     }
 
     public void run(RunnerConfiguration.RunnerType platform) {
+        runWithStrategy((latch) -> {
+            Logger.getInstance().info(String.format("Running '%s' Simulation...", platform));
+            addGradleTaskAndRun(ideaProject, "runDesktop --info -D org.ois.runner.debugMode=true", ProjectUtils.getProjectBasePath(ideaProject).toString(), false, latch);
+        });
+    }
+
+    public void runDevMode() {
+        runWithStrategy(latch -> {
+            Logger.getInstance().info("Running DevMode Simulation...");
+            Path devModeDir = Files.createTempDirectory(String.format("ois_%s_dev", ideaProject.getName()));
+            ProjectUtils.runGradleTasks(ProjectUtils.getProjectBasePath(ideaProject), new Hashtable<>(), false,"runDesktop", "--info", "-D", String.format("org.ois.runner.devModeDir='%s'", devModeDir));
+            latch.countDown();
+        });
+    }
+
+    private interface SimulationRunStrategy {
+        void run(CountDownLatch latch) throws ExecutionException, IOException, InterruptedException;
+    }
+
+    private void runWithStrategy(SimulationRunStrategy strategy) {
         if (DumbService.isDumb(ideaProject)) {
             Logger.getInstance().warn("Intellij is still indexing the project, can't run simulation...");
             return;
@@ -60,23 +84,18 @@ public class SimulationManager {
         Thread runSimulationThread = new Thread(() -> {
             executor = Executors.newFixedThreadPool(3);
             try {
-                Logger.getInstance().info(String.format("Running Simulation on '%s'...", platform));
                 ProgressManager.checkCanceled();
 
-                try {
-                    // Wait for the task to complete
-                    CountDownLatch latch = new CountDownLatch(1);
-                    addGradleTaskAndRun(ideaProject, "runDesktop --info", ProjectUtils.getProjectBasePath(ideaProject).toString(), false, latch);
-                    latch.await(); // Wait for the Gradle task to finish
-                } catch (ExecutionException | InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+                // Wait for the task to complete
+                CountDownLatch latch = new CountDownLatch(1);
+                strategy.run(latch);
+                latch.await(); // Wait for the strategy to finish
 
                 executor.shutdown();
                 if (!executor.awaitTermination(Long.MAX_VALUE, TimeUnit.MINUTES)) {
                     Logger.getInstance().error(LOG_PREFIX + "Simulation timeout elapsed.");
                 }
-            } catch (RuntimeException | InterruptedException e) {
+            } catch (IOException | InterruptedException | ExecutionException e) {
                 Logger.getInstance().error(LOG_PREFIX, e);
             } finally {
                 Logger.getInstance().info("Done");

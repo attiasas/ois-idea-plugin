@@ -11,13 +11,19 @@ import org.ois.idea.utils.Utils;
 
 import java.awt.*;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ExportManager {
 
     private final static String LOG_PREFIX = "Can't export OIS project: ";
+
+    private final static Pattern debugModePattern = Pattern.compile("(?m)^\\s*(?!//)\\s*debugMode\\s*=\\s*(\\w+)");
+
 
     private final Project ideaProject;
 
@@ -53,8 +59,13 @@ public class ExportManager {
             @Override
             public void run(Utils.@NotNull OISProgressIndicator indicator) {
                 try {
-                    indicator.state("Exporting Simulation");
-                    ProjectUtils.runGradleTasks(projectDirectory, new HashMap<>(), true, "export");
+                    boolean debugMode = findOisProjectDebugMode(ProjectUtils.getProjectBasePath(ideaProject));
+                    if (debugMode) {
+                        indicator.state("Exporting Simulation (Debug mode)");
+                    } else {
+                        indicator.state("Exporting Simulation");
+                    }
+                    ProjectUtils.runGradleTasks(projectDirectory, new HashMap<>(), false, "export", "-D", String.format("org.ois.runner.debugMode=%b", debugMode));
                     // Done
                     indicator.done();
                     Logger.getInstance().info("OIS project exported");
@@ -80,6 +91,20 @@ public class ExportManager {
                 Logger.getInstance().error("Can't open project OIS distribution directory at " + location, e);
             }
         });
+    }
+
+    private static boolean findOisProjectDebugMode(Path projectPath) throws IOException {
+        Path buildFilePath = projectPath.resolve("build.gradle");
+        if (!Files.exists(buildFilePath)) {
+            return false;
+        }
+        // Read the contents of the file
+        String buildFileContent = Files.readString(buildFilePath);
+        Matcher matcher = debugModePattern.matcher(buildFileContent);
+        if (!matcher.find()) {
+            return false;
+        }
+        return Boolean.parseBoolean(matcher.group(1));
     }
 
     public boolean isExportInProgress() { return exporting.get(); }

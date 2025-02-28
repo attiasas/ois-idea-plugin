@@ -106,6 +106,8 @@ public class OisToolWindow extends SimpleToolWindowPanel implements Disposable {
         return List.of(
                 this.viewSelectorAction,
                 new Separator(),
+                actionManager.getAction("OIS.DevModeSimulation"),
+                new Separator(),
                 actionManager.getAction("OIS.DebugSimulation"),
                 actionManager.getAction("OIS.StopDebugSimulation"),
                 actionManager.getAction("OIS.ExportSimulation"),

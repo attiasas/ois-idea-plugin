@@ -47,10 +47,15 @@
                 description="Download and install the needed OIS dependencies for the project"
                 icon="com.intellij.icons.ExpUiIcons.General.Download"/>
 
+        <action id="OIS.DevModeSimulation"
+                class="org.ois.idea.actions.DevModeSimulationAction"
+                text="Dev Mode Simulation"
+                description="Run the simulation on desktop platform in dev mode"
+                icon="AllIcons.General.LayoutPreviewOnly"/>
         <action id="OIS.DebugSimulation"
                 class="org.ois.idea.actions.DebugSimulationAction"
                 text="Debug Simulation"
-                description="Run the simulation on desktop platform in dev mode"
+                description="Run the simulation on desktop platform in debug mode"
                 icon="AllIcons.Actions.StartDebugger"/>
         <action id="OIS.StopDebugSimulation"
                 class="org.ois.idea.actions.DebugStopSimulationAction"

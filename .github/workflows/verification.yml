@@ -17,8 +17,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        core-branch: [main]  # Adjust branches/tags as needed
-        gradle-plugin-branch: [main]
+        core-branch: [entities]  # Adjust branches/tags as needed
+        gradle-plugin-branch: [entities]
     name: Compatibility verification
     steps:
       - uses: actions/checkout@v4

@@ -36,6 +36,7 @@
         <projectService serviceImplementation="org.ois.idea.ui.OisToolWindow"/>
         <projectService serviceImplementation="org.ois.idea.ui.views.project.CreateProjectView"/>
         <projectService serviceImplementation="org.ois.idea.ui.views.project.ProjectConfigView"/>
+        <projectService serviceImplementation="org.ois.idea.ui.views.entities.EntitiesView"/>
 
     </extensions>
 

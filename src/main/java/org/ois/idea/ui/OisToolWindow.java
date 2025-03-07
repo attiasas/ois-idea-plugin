@@ -11,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import org.ois.idea.actions.ViewSelectorAction;
 import org.ois.idea.events.ProjectViewEvents;
 import org.ois.idea.project.OisProject;
+import org.ois.idea.ui.views.entities.EntitiesView;
 import org.ois.idea.ui.views.project.CreateProjectView;
 import org.ois.idea.ui.views.project.ProjectConfigView;
 
@@ -63,7 +64,7 @@ public class OisToolWindow extends SimpleToolWindowPanel implements Disposable {
         views = Map.of(
                 View.Create, CreateProjectView.getInstance(project),
                 View.Project, ProjectConfigView.getInstance(project),
-                View.Entities, getDefaultView(View.Entities),
+                View.Entities, EntitiesView.getInstance(project),
                 View.Inspector, getDefaultView(View.Inspector)
         );
 
